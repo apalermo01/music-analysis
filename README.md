@@ -15,3 +15,8 @@ Then create a virtual environment using the environment.yml file <br>
 If everything goes according to plan, you now have dependencies identical to what everyone else is currently using. <br>
 If you add a new dependency: <br>
 `conda env export > environment.yml` before comitting
+
+For more info on conda environments: 
+https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
+https://stackoverflow.com/questions/48787250/set-up-virtualenv-using-a-requirements-txt-generated-by-conda
+https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
