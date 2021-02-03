@@ -16,7 +16,7 @@ If everything goes according to plan, you now have dependencies identical to wha
 If you add a new dependency: <br>
 `conda env export > environment.yml` before comitting
 
-For more info on conda environments: 
-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
-https://stackoverflow.com/questions/48787250/set-up-virtualenv-using-a-requirements-txt-generated-by-conda
-https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html
+For more info on conda environments: <br>
+https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html<br>
+https://stackoverflow.com/questions/48787250/set-up-virtualenv-using-a-requirements-txt-generated-by-conda<br>
+https://docs.conda.io/projects/conda/en/latest/user-guide/concepts/environments.html<br>
