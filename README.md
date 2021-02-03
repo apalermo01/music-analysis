@@ -1,4 +1,4 @@
-#Music-Analysis
+# Music-Analysis
 ## Semester project for ITCS 5156 (Applied Machine Learning)
 
 ## Installation / setup using anaconda
