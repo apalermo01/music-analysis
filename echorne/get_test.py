@@ -14,3 +14,4 @@ for i in range((examples.shape[0] // 1000)+1):
         1000 <= len(musicFiles) else len(musicFiles)
     musicFilesSlice = musicFiles[realIndex:maxIndex]
     add_test.add_1000(musicFilesSlice, examples, audioFolder)
+    print('%d completed' % maxIndex)
