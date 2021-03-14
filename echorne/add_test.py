@@ -1,5 +1,7 @@
 import pandas as pd
 import mysql.connector
+import fft_mfcc
+from os import path
 
 
 def getConnection():
@@ -7,14 +9,18 @@ def getConnection():
         user='root', password='s11versouL', database='music')
 
 
-def add_1000(filenames, df):
+def add_1000(filenames, df, relativePath=''):
     '''It doesn't really have to be 1000. \
     The dataframe length can be longer than the filenames length.'''
     cnx = getConnection()
     cursor = cnx.cursor()
-    for file in filenames:
+    for filename in filenames:
+        wav = filename
+        if relativePath:
+            wav = path.join(relativePath, filename)
         try:
-            insertTrain(cursor, file, df.loc[file[:-4]])
+            fft, mfcc = fft_mfcc.getFftMfcc(wav)
+            insertTrain(cursor, filename, df.loc[filename[:-4]], fft, mfcc)
         except Exception as e:
             message = 'Could not retrieve %s from json file dataframe.' % e
             print(message)
