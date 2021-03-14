@@ -19,8 +19,8 @@ def add_1000(filenames, df, relativePath=''):
         if relativePath:
             wav = path.join(relativePath, filename)
         try:
-            fft, mfcc = fft_mfcc.getFftMfcc(wav)
-            insertTrain(cursor, filename, df.loc[filename[:-4]], fft, mfcc)
+            mfcc = fft_mfcc.getFftMfcc(wav)
+            insertTrain(cursor, filename, df.loc[filename[:-4]], None, mfcc)
         except Exception as e:
             message = 'Could not retrieve %s from json file dataframe.' % e
             print(message)
