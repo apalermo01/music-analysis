@@ -3,7 +3,7 @@ import mysql.connector
 import fft_mfcc
 from os import path
 
-TABLE = 'test'
+TABLE = 'validate'
 
 def getConnection():
     return mysql.connector.connect(
@@ -21,7 +21,7 @@ def add_1000(filenames, df, relativePath=''):
             wav = path.join(relativePath, filename)
         try:
             mfcc = fft_mfcc.getFftMfcc(wav)
-            insertTest(cursor, filename, df.loc[filename[:-4]], None, mfcc)
+            insertValidate(cursor, filename, df.loc[filename[:-4]], None, mfcc)
         except Exception as e:
             message = 'Could not retrieve %s from json file dataframe.' % e
             print(message)
@@ -29,17 +29,17 @@ def add_1000(filenames, df, relativePath=''):
     cnx.close()
 
 
-def insertTest(cursor, filename, target, fft='', mfcc='', folder_id=1):
-    '''Just insert testing data into the test table.'''
-    add_test = (f"INSERT INTO {TABLE} "
+def insertValidate(cursor, filename, target, fft='', mfcc='', folder_id=1):
+    '''Just insert validateing data into the validate table.'''
+    add_validate = (f"INSERT INTO {TABLE} "
                  "(fft, mfcc, filename, folder_id, target) "
                  "VALUES (%(fft)s, %(mfcc)s, %(filename)s, %(folder_id)s, %(target)s)")
-    data_test = {'filename': filename, 'target': target,
+    data_validate = {'filename': filename, 'target': target,
                   'fft': fft, 'mfcc': mfcc, 'folder_id': folder_id}
     err = 0
     exceptions = 0
     try:
-        cursor.execute(add_test, data_test)
+        cursor.execute(add_validate, data_validate)
     except Exception as e:
         err += 1
         exceptions = e
