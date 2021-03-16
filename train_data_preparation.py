@@ -7,7 +7,7 @@ from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 
 
-class MfccPipeline():
+class MfccPipeline:
 
     def __init__(self):
         self.PATH = "C:/Users/alexc/Downloads/nsynth-train.jsonwav.tar.gz"
@@ -26,7 +26,6 @@ class MfccPipeline():
                 target name (e.g. 'guitar', 'mallet', ect.), and target index
         """
 
-        print("getting files")
         if PATH is None:
             PATH = self.PATH
 
@@ -94,3 +93,7 @@ class MfccPipeline():
 
         # split into train and validation set and return the data
         return train_test_split(X, t, test_size=validation_split)
+
+if __name__ == '__main__':
+    pipe = MfccPipeline()
+    pipe.mfcc_pipeline(num_samples=10)
