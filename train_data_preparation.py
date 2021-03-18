@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 class MfccPipeline:
 
     def __init__(self):
-        self.PATH = "C:/Users/alexc/Downloads/nsynth-train.jsonwav.tar.gz"
+        self.PATH = "../nsynth-train.jsonwav.tar.gz"
 
         self.targets_list = [
             "bass", "brass", "flute", "guitar", "keyboard",

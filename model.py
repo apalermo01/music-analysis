@@ -6,7 +6,7 @@ from train_data_preparation import MfccPipeline
 
 # prepare the data
 pipe = MfccPipeline()
-X_train, X_val, y_train, y_val = pipe.mfcc_pipeline(num_samples = 1000)
+X_train, X_val, y_train, y_val = pipe.mfcc_pipeline(num_samples = 100)
 
 # build the network architecture
 model = keras.Sequential([
@@ -43,4 +43,4 @@ model.summary()
 history = model.fit(X_train, y_train, batch_size=64, shuffle=True, validation_data=(X_val, y_val), epochs=5)
 
 with open("history_basic.txt", 'w') as f:
-    f.write(history)
+    f.write(str(history.history))
