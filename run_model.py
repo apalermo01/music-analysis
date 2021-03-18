@@ -73,14 +73,14 @@ if __name__ == '__main__':
 
 	args={
 		'train_path': "C:/Users/alexc/Downloads/nsynth-train.jsonwav.tar.gz",
-		'num_files': 128,
-		'num_batches': 3,
-		'batch_size': 128,
+		'num_files': 1024,
+		'num_batches': 100,
+		'batch_size': 256,
 		'epochs': 10,
 		#'model_init': models.sequential_model(name = "DELETE THIS MODEL- DEBUGGING ONLY"),
-		'save_model': False,
-		'save_perf': False,
-		'out_path': "model_results/test_dir",
+		'save_model': True,
+		'save_perf': True,
+		'out_path': "model_results/batch_3182021",
 	}
 
 	models = [
@@ -110,3 +110,4 @@ if __name__ == '__main__':
 		results_df = results_df.append(result_dict, ignore_index=True)
 
 	print(results_df.head)
+	results_df.to_csv("model_results/batch_3182021/results_3182021.csv")
