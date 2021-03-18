@@ -9,8 +9,11 @@ import json
 
 class MfccPipeline:
 
-    def __init__(self):
-        self.PATH = "C:/Users/alexc/Downloads/nsynth-train.jsonwav.tar.gz"
+    def __init__(self, PATH=None):
+        if PATH is None:
+            self.PATH = "C:/Users/alexc/Downloads/nsynth-train.jsonwav.tar.gz"
+        else:
+            self.PATH = PATH
 
         self.targets_list = [
             "bass", "brass", "flute", "guitar", "keyboard",
