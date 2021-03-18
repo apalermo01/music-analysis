@@ -100,6 +100,7 @@ class sequential_l2:
 
 		self.name = name
 		self.hyper_params = {'Learning rate': lr, 'l2 regularization': l2_reg}
+
 		# build the network architecture
 		self.model = keras.Sequential([
 			# input layer                    # flatten this 2D array, intervals x values of MFCCs for that interval
@@ -148,6 +149,8 @@ class cnn_basic:
 				input_shape_x=20, input_shape_y=126, lr=0.001):
 
 		self.name = name
+		self.hyper_params = {'Learning rate': lr}
+
 		self.model = keras.Sequential()
 
 		# This network was copied directly from https://www.youtube.com/watch?v=dOG-HxpbMSw&list=PL-wATfeyAMNrtbkCNsLcpoAyBBRJZVlnf&index=16
@@ -194,6 +197,8 @@ class rnn_lstm_basic:
 				input_shape_x=20, input_shape_y=126, lr=0.0001):
 
 		self.name = name
+		self.hyper_params = {'Learning rate': lr}
+
 		# Create model
 		self.model = keras.Sequential()
 
