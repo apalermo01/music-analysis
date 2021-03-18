@@ -6,7 +6,7 @@ from train_data_preparation import MfccPipeline
 
 # prepare the data
 pipe = MfccPipeline()
-X_train, X_val, y_train, y_val = pipe.mfcc_pipeline(num_samples = 100000)
+X_train, X_val, y_train, y_val = pipe.mfcc_pipeline(num_samples = 1000)
 
 # build the network architecture
 model = keras.Sequential([
