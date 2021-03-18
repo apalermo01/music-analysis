@@ -1,0 +1,5 @@
+batch # 0; loading time: 5.250372886657715s
+batch # 1; loading time: 6.297300338745117s
+batch # 2; loading time: 7.17195987701416s
+batch # 3; loading time: 7.477563142776489s
+batch # 4; loading time: 6.813522100448608s
