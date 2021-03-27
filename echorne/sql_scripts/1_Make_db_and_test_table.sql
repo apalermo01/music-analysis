@@ -1,5 +1,5 @@
 CREATE database music;
-CREATE TABLE train (
+CREATE TABLE test (
 	id int not null auto_increment,
     fft TEXT,
     mfcc TEXT,
