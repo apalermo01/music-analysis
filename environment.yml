@@ -1,0 +1,19 @@
+name: MIR_project
+channels:
+  - conda-forge
+  - pypi
+  - pytorch
+  - defaults
+dependencies:
+  - python=3.8
+  - ipython
+  - ipykernel
+  - jupyter
+  - matplotlib
+  - librosa
+  - pandas
+  - pytorch
+  - scikit-learn
+  - pip
+  - pip:
+    - torch-summary
