@@ -357,3 +357,81 @@ class Conv5Layer(nn.Module):
 		x = self.linear2(x)
 		x = self.head(x)
 		return x
+
+class ConvNLayer(nn.Module):
+	def __init__(self, single_sample, 
+
+		num_conv_layers=2,
+		channels=[8, 16],
+		conv_kernel_sizes=[3, 3],
+		conv_strides=[1, 1],
+		conv_paddings=[1, 1],
+		pool_masks=[True, True],
+		pool_kernel_sizes=[2, 2],
+		pool_strides=[2, 2],
+		
+		num_linear_layers=2,
+		linear_features=[128, 64],
+		dropout_probs=[0, 0]
+		):
+		"""Convolutional neural net with an arbitrary number of convolutional layers
+		"""
+		super(ConvNLayer, self).__init__()
+
+		self.num_conv_layers = num_conv_layers
+		self.num_linear_layers = num_linear_layers
+
+		# prepend 1 to input channels since there is only one
+		channels.insert(0, 1)
+
+		# define list of convolutional layers
+		self.conv_layers = [
+			ConvBlock(
+				in_channels = channels[i],
+				out_channels = channels[i+1],
+				conv_kernel_size = conv_kernel_sizes[i],
+				conv_stride = conv_strides[i],
+				conv_padding = conv_paddings[i],
+				inc_pool = pool_masks[i],
+				pool_kernel_size = pool_kernel_sizes[i],
+				pool_stride = pool_strides[i])
+		for i in range(self.num_conv_layers)]
+
+		# calculate size of linear layers
+		sample = torch.from_numpy(
+			single_sample[np.newaxis,...].astype(np.float32)
+		)
+
+		for i in range(self.num_conv_layers):
+			sample = self.conv_layers[i](sample)
+
+		sample_flattened = sample.flatten(start_dim=1)
+
+		# prepend shape of input to linear block
+		linear_features.insert(0, sample_flattened.shape[1])
+
+		# define list of linear layers
+		self.linear_layers = [
+			LinearBlock(
+				in_features = (linear_features[i]),
+				out_features = (linear_features[i+1]),
+				dropout_prob = dropout_probs[i])
+			for i in range(self.num_linear_layers)
+		]
+
+		# define output head
+		self.head = HeadBlock(in_features=(linear_features[-1]))
+
+	def forward(self, x):
+		x.to('cpu')
+		for i in range(self.num_conv_layers):
+			print(self.conv_layers[i])
+			x = self.conv_layers[i](x)
+		
+		x = x.flatten(start_dim=1)
+
+		for i in range(self.num_linear_layers):
+			x = self.linear_layers[i](x)
+		
+		x = self.head(x)
+		return x
