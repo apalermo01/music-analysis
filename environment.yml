@@ -10,9 +10,9 @@ dependencies:
   - ipykernel
   - jupyter
   - matplotlib
+  - pytorch
   - librosa
   - pandas
-  - pytorch
   - scikit-learn
   - pip
   - pip:
