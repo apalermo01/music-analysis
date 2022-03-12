@@ -6,14 +6,17 @@ channels:
   - defaults
 dependencies:
   - python=3.8
+  - cudatoolkit
   - ipython
   - ipykernel
   - jupyter
   - matplotlib
-  - pytorch
   - librosa
   - pandas
   - scikit-learn
   - pip
+  - pytorch
+  - torchvision
+  - torchaudio
   - pip:
     - torch-summary
